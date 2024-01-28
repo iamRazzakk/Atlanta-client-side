@@ -50,7 +50,7 @@ const MyPost = () => {
             }
         });
     }
-    const handleUpdate = (id) => {
+    const handleUpdate = () => {
         
     }
     return (

@@ -9,6 +9,7 @@ import CreateBlog from './CreateBlog/CreateBlog';
 import Dashboard from './Dashboard/Dashboard';
 import UserProfile from './Dashboard/UserProfile';
 import MyPost from './Dashboard/MyPost';
+import BlogDetail from './BlogDetail/BlogDetail';
 
 
 
@@ -34,6 +35,10 @@ const myCreatedRouter = createBrowserRouter([
             {
                 path: 'singup',
                 element: <SingUp></SingUp>
+            },
+            {
+                path: '/blog/:id',
+                element: <BlogDetail></BlogDetail>
             }
         ]
     },

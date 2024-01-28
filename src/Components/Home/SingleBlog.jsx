@@ -1,5 +1,7 @@
 /* eslint-disable react/prop-types */
 
+import { Link } from "react-router-dom";
+
 
 const SingleBlog = ({ blog }) => {
     // console.log(blog);
@@ -9,7 +11,9 @@ const SingleBlog = ({ blog }) => {
                 <div className="md:flex gap-4">
                     <div className="flex-1">
                         <p className="text-xl font-Bricolage font-bold hover:underline">#{blog.Category}</p>
-                        <h1 className="font-Bricolage text-3xl font-bold">{blog.name}</h1>
+                        <Link to={`blog/${blog._id}`}>
+                            <h1 className="font-Bricolage text-3xl font-bold">{blog.name}</h1>
+                        </Link>
                         <h3 className="font-Lato text-xl">{blog.details}</h3>
                     </div>
                     <div className="">
