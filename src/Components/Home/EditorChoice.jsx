@@ -4,10 +4,7 @@ const EditorChoice = () => {
     return (
         <div>
             <div className="flex">
-                <h1>Editor’s Choice</h1>
-                <div className="navbar-end">
-                    creativeinnovationtechnologylifestyleinspiration
-                </div>
+                <h1 className="text-2xl">Editor’s Choice</h1>
             </div>
             <div className="bg-[#EFFC06] md:h-[890px]">
                 <div className="px-10 md:flex gap-6">

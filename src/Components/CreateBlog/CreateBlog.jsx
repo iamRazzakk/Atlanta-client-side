@@ -1,6 +1,6 @@
 import axios from "axios";
 // import useAxiosPublic from "../Hook/axiosPublic";
-import toast from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 
 
 const CreateBlog = () => {
@@ -31,14 +31,14 @@ const CreateBlog = () => {
         })
             .then(response => {
                 if (response.data.acknowledged) {
-                    toast.success('Assignment added successfully');
+                    toast.success('Blog added successfully');
                 } else {
                     toast.error('Something is missing');
                 }
             })
             .catch(error => {
                 console.error('Error:', error);
-                toast.error('An error occurred while adding the assignment');
+                toast.error('An error occurred while adding the Blog');
             });
     }
     return (
@@ -61,10 +61,10 @@ const CreateBlog = () => {
                         <select name="Category" className="w-full rounded-md md:py-3  mx-auto text-black bg-white" id="Category">
                             <option value="innovation">innovation</option>
                             <option value="design" selected>design</option>
-                            <option value="lifestyle" selected>lifestyle</option>
-                            <option value="creative" selected>creative</option>
-                            <option value="technology" selected>technology</option>
-                            <option value="inspiration" selected>inspiration</option>
+                            <option value="lifestyle" >lifestyle</option>
+                            <option value="creative" >creative</option>
+                            <option value="technology" >technology</option>
+                            <option value="inspiration" >inspiration</option>
                         </select>
                     </div>
                 </div>
@@ -101,7 +101,7 @@ const CreateBlog = () => {
                     <span className="absolute inset-0 border-2 border-black rounded-full"></span>
                 </button>
 
-
+                <Toaster></Toaster>
                 {/* <input type="submit" value="Add Car Detail" className="btn btn-block" /> */}
             </form>
         </div>
