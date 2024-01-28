@@ -1,14 +1,45 @@
+import axios from "axios";
+// import useAxiosPublic from "../Hook/axiosPublic";
+import toast from "react-hot-toast";
 
 
 const CreateBlog = () => {
-    const handleAddCoffee = e => {
+    // const axiosPublic = useAxiosPublic()
+    const IMG_API_KEY = '95e0e6f1790d5b0a2184be49e4a99407' //please don't use this api
+    const handleAddCoffee = async e => {
         e.preventDefault()
         const form = e.target;
         const name = form.name.value;
         const Category = form.Category.value;
-        const image = form.image.value;
         const details = form.details.value;
-        console.log(name, Category, image, details);
+        console.log(name, Category, details);
+        const image = form.image.files[0];
+        const formData = new FormData()
+        formData.append('image', image)
+        const { data } = await axios.post(`https://api.imgbb.com/1/upload?key=${IMG_API_KEY}`, formData);
+        // console.log(data);
+        const blogsData = {
+            name: name,
+            Category: Category,
+            details: details,
+            data: data,
+        }
+        axios.post('http://localhost:5000/blogs', blogsData, {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+            .then(response => {
+                if (response.data.acknowledged) {
+                    toast.success('Assignment added successfully');
+                } else {
+                    toast.error('Something is missing');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                toast.error('An error occurred while adding the assignment');
+            });
     }
     return (
         <div className="bg-[#ffe945] p-24 font-Bricolage">
@@ -52,7 +83,7 @@ const CreateBlog = () => {
                 </div>
 
                 <div className="mb-8">
-                    <div className="form-control md:w-full  ml-4">
+                    <div className="form-control md:w-full ">
                         <label className="label">
                             <span className="label-text font-bold">Details</span>
                         </label>
