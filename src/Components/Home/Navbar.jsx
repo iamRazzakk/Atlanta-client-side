@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from './../UsersRegisterAndLogin/AuthProvider';
 
 const Navbar = () => {
@@ -10,7 +10,7 @@ const Navbar = () => {
                 <NavLink
                     to="/"
                     className={({ isActive, isPending }) =>
-                        isPending ? "pending" : isActive ? "font-bold text-[#30a2a7]" : "font-normal"
+                        isPending ? "pending" : isActive ? "font-bold text-[#050505]" : " text-black text-normal"
                     }
                 >
                     Home
@@ -20,7 +20,7 @@ const Navbar = () => {
                 <NavLink
                     to="/blog-add"
                     className={({ isActive, isPending }) =>
-                        isPending ? "pending" : isActive ? "font-bold text-[#ffe945]" : "font-normal"
+                        isPending ? "pending" : isActive ? "font-bold text-[#050505]" : " text-black text-normal"
                     }
                 >
                     Add Blog
@@ -28,29 +28,9 @@ const Navbar = () => {
             </li>
             <li>
                 <NavLink
-                    to="/about-us"
-                    className={({ isActive, isPending }) =>
-                        isPending ? "pending" : isActive ? "font-bold text-[#30a2a7]" : "font-normal"
-                    }
-                >
-                    About Us
-                </NavLink>
-            </li>
-            <li>
-                <NavLink
-                    to="/contact-us"
-                    className={({ isActive, isPending }) =>
-                        isPending ? "pending" : isActive ? "font-bold text-[#30a2a7]" : "font-normal"
-                    }
-                >
-                    Contact Us
-                </NavLink>
-            </li>
-            <li>
-                <NavLink
                     to="dashboard"
                     className={({ isActive, isPending }) =>
-                        isPending ? "pending" : isActive ? "font-bold text-[#30a2a7]" : "font-normal"
+                        isPending ? "pending" : isActive ? "font-bold  text-[#050505]" : " text-black text-normal"
                     }
                 >
                     Dashboard
@@ -70,7 +50,7 @@ const Navbar = () => {
             })
     }
     return (
-        <div className="navbar bg-base-100">
+        <div className="navbar bg-white text-black">
             <div className="navbar-start">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -85,7 +65,7 @@ const Navbar = () => {
                                 <NavLink
                                     onClick={handleLogout}
                                     className={({ isActive, isPending }) =>
-                                        isPending ? "pending" : isActive ? "font-bold text-[#30a2a7]" : "font-normal"
+                                        isPending ? "pending" : isActive ? "font-bold text-[#050505]" : " text-black text-normal"
                                     }
                                 >
                                     Logout
@@ -97,7 +77,7 @@ const Navbar = () => {
                                         <NavLink
                                             to="/login"
                                             className={({ isActive, isPending }) =>
-                                                isPending ? "pending" : isActive ? "font-bold text-[#30a2a7]" : "font-normal"
+                                                isPending ? "pending" : isActive ? "font-bold text-black" : "text-normal"
                                             }
                                         >
                                             Login
@@ -108,10 +88,12 @@ const Navbar = () => {
 
                     </ul>
                 </div>
-                <a className="md:text-4xl font-bold font-Bricolage">Atlanta</a>
-                <div className="form-control md:ml-4">
+                <Link to={'/'}>
+                    <a className="md:text-4xl font-bold font-Bricolage">Atlanta</a>
+                </Link>
+                {/* <div className="form-control md:ml-4">
                     <input type="text" placeholder="Search" className="input input-bordered w-24 md:w-auto" />
-                </div>
+                </div> */}
             </div>
 
             <div className="navbar-end">
@@ -123,7 +105,7 @@ const Navbar = () => {
                                 <NavLink
                                     onClick={handleLogout}
                                     className={({ isActive, isPending }) =>
-                                        isPending ? "pending" : isActive ? "font-bold text-[#30a2a7]" : "font-normal"
+                                        isPending ? "pending" : isActive ? "font-bold text-black" : "text-normal"
                                     }
                                 >
                                     Logout
@@ -135,7 +117,7 @@ const Navbar = () => {
                                         <NavLink
                                             to="/login"
                                             className={({ isActive, isPending }) =>
-                                                isPending ? "pending" : isActive ? "font-bold text-[#30a2a7]" : "font-normal"
+                                                isPending ? "pending" : isActive ? "font-bold text-[#30a2a7]" : ""
                                             }
                                         >
                                             Login

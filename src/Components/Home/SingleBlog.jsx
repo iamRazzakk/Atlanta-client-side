@@ -8,13 +8,13 @@ const SingleBlog = ({ blog }) => {
     return (
         <div>
             {blog && blog.Category && blog.name && blog.details && blog.data?.data?.display_url ? (
-                <div className="md:flex gap-4">
+                <div className="md:flex gap-4 mb-4">
                     <div className="flex-1">
-                        <p className="text-xl font-Bricolage font-bold hover:underline">#{blog.Category}</p>
                         <Link to={`blog/${blog._id}`}>
+                            <p className="text-xl font-Bricolage font-bold hover:underline">#{blog.Category}</p>
                             <h1 className="font-Bricolage text-3xl font-bold">{blog.name}</h1>
+                            <h3 className="font-Lato text-xl">{blog.details}</h3>
                         </Link>
-                        <h3 className="font-Lato text-xl">{blog.details}</h3>
                     </div>
                     <div className="">
                         <img className="h-[131px] w-[211px]" src={blog.data.data.display_url} alt="" />

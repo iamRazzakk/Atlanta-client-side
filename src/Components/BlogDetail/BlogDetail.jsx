@@ -1,16 +1,13 @@
-import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+// import Comment from "./Comment";
 
 const BlogDetail = () => {
     const { id } = useParams();
     const [blog, setBlog] = useState(null);
-    // const { data: comments } = useQuery('comments', () => {
-    //     return fetch("http://localhost:5000/comments")
-    //         .then((res) => res.json());
-    // });
+
 
     useEffect(() => {
         fetch(`http://localhost:5000/blogs/${id}`)
@@ -24,10 +21,11 @@ const BlogDetail = () => {
         const form = e.target;
         const name = form.name.value;
         const comment = form.comment.value;
+        const userId = parseInt(id);
         const commentData = {
             name: name,
             comment: comment,
-            userId: id
+            userId: userId
         }
 
         axios.post('http://localhost:5000/comments', commentData, {
@@ -60,7 +58,9 @@ const BlogDetail = () => {
                 <textarea className="textarea border border-black textarea-bordered" cols="50" rows="10" name="comment" placeholder="Enter your comment"></textarea><br />
                 <button className="bg-[#3d90e9] text-white py-3 px-10 text-xl rounded-full button">Submit</button>
             </form>
-            
+            {/* <div>
+                <Comment></Comment>
+            </div> */}
         </div>
     );
 };

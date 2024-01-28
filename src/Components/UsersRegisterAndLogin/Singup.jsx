@@ -48,7 +48,7 @@ const SingUp = () => {
             <div className="flex-1 flex-col-reverse md:p-4 md:mt-14">
                 <Lottie className='md:h-[450px] ' animationData={lottieAnimation} loop={true} />
             </div>
-            <div className="w-1/2 mx-auto bg-[#effc10] md:p-4 m-4 rounded-lg shadow-lg">
+            <div className="w-1/2 mx-auto bg-[#ffc300] md:p-4 m-4 rounded-lg shadow-lg">
                 <h1 className="text-4xl font-bold text-center text-black">Register Please</h1>
                 <form onSubmit={handleSubmit} className="card-body">
                     < div className="form-control" >

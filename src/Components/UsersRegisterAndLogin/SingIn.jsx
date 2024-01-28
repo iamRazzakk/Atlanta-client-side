@@ -28,7 +28,7 @@ const SingIn = () => {
     }
     return (
         <div>
-            <div className="w-1/2 mx-auto bg-[#effc10] md:p-4 m-4 rounded-lg shadow-lg">
+            <div className="w-1/2 mx-auto bg-[#ffc300] md:p-4 m-4 rounded-lg shadow-lg">
                 <h1 className="text-4xl font-bold text-center text-black">Login Please</h1>
                 <form onSubmit={handleLogin} className="card-body">
                     < div className="form-control" >

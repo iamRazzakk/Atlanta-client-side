@@ -10,6 +10,7 @@ import Dashboard from './Dashboard/Dashboard';
 import UserProfile from './Dashboard/UserProfile';
 import MyPost from './Dashboard/MyPost';
 import BlogDetail from './BlogDetail/BlogDetail';
+import PrivateRoute from './UsersRegisterAndLogin/PrivateRoute';
 
 
 
@@ -26,7 +27,7 @@ const myCreatedRouter = createBrowserRouter([
             },
             {
                 path: '/blog-add',
-                element: <CreateBlog></CreateBlog>
+                element: <PrivateRoute><CreateBlog></CreateBlog></PrivateRoute>
             },
             {
                 path: 'login',
@@ -38,21 +39,21 @@ const myCreatedRouter = createBrowserRouter([
             },
             {
                 path: '/blog/:id',
-                element: <BlogDetail></BlogDetail>
+                element: <PrivateRoute><BlogDetail></BlogDetail></PrivateRoute>
             }
         ]
     },
     {
         path: '/dashboard',
-        element: <Dashboard></Dashboard>,
+        element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
         children: [
             {
                 path: 'dashboard/profile',
-                element: <UserProfile></UserProfile>
+                element: <PrivateRoute><UserProfile></UserProfile></PrivateRoute>
             },
             {
                 path: 'dashboard/my-post',
-                element: <MyPost></MyPost>
+                element: <PrivateRoute><MyPost></MyPost></PrivateRoute>
             },
         ]
     }
