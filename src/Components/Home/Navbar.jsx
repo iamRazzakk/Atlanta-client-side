@@ -1,6 +1,9 @@
+import { useContext } from "react";
 import { NavLink } from "react-router-dom";
+import { AuthContext } from './../UsersRegisterAndLogin/AuthProvider';
 
 const Navbar = () => {
+    const { user, logOut } = useContext(AuthContext)
     const navLink = <>
         <ul className=" md:flex gap-6 text-white">
             <li>
@@ -13,16 +16,6 @@ const Navbar = () => {
                     Home
                 </NavLink>
             </li>
-            {/* <li>
-                <NavLink
-                    to="/add-new-house"
-                    className={({ isActive, isPending }) =>
-                        isPending ? "pending" : isActive ? "font-bold text-[#30a2a7]" : "font-normal"
-                    }
-                >
-                    Add House
-                </NavLink>
-            </li> */}
             <li>
                 <NavLink
                     to="/about-us"
@@ -47,6 +40,15 @@ const Navbar = () => {
 
 
     </>
+    const handleLogout = () => {
+        logOut()
+            .then(result => {
+                console.log(result.user);
+            })
+            .then(error => {
+                console.error(error)
+            })
+    }
     return (
         <div className="navbar bg-base-100">
             <div className="navbar-start">
@@ -58,16 +60,32 @@ const Navbar = () => {
                         {
                             navLink
                         }
-                        <li>
-                            <NavLink
-                                to="/contact-us"
-                                className={({ isActive, isPending }) =>
-                                    isPending ? "pending" : isActive ? "font-bold text-[#30a2a7]" : "font-normal"
-                                }
-                            >
-                                Login
-                            </NavLink>
-                        </li>
+                        {
+                            user ? <><li>
+                                <NavLink
+                                    onClick={handleLogout}
+                                    className={({ isActive, isPending }) =>
+                                        isPending ? "pending" : isActive ? "font-bold text-[#30a2a7]" : "font-normal"
+                                    }
+                                >
+                                    Logout
+                                </NavLink>
+                            </li>
+                            </> :
+                                <>
+                                    <li>
+                                        <NavLink
+                                            to="/login"
+                                            className={({ isActive, isPending }) =>
+                                                isPending ? "pending" : isActive ? "font-bold text-[#30a2a7]" : "font-normal"
+                                            }
+                                        >
+                                            Login
+                                        </NavLink>
+                                    </li>
+                                </>
+                        }
+
                     </ul>
                 </div>
                 <a className="md:text-4xl font-bold font-Bricolage">Atlanta</a>
@@ -80,16 +98,31 @@ const Navbar = () => {
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">
                         {navLink}
-                        <li>
-                            <NavLink
-                                to="/contact-us"
-                                className={({ isActive, isPending }) =>
-                                    isPending ? "pending" : isActive ? "font-bold text-[#30a2a7]" : "font-normal"
-                                }
-                            >
-                                Login
-                            </NavLink>
-                        </li>
+                        {
+                            user ? <><li>
+                                <NavLink
+                                    onClick={handleLogout}
+                                    className={({ isActive, isPending }) =>
+                                        isPending ? "pending" : isActive ? "font-bold text-[#30a2a7]" : "font-normal"
+                                    }
+                                >
+                                    Logout
+                                </NavLink>
+                            </li>
+                            </> :
+                                <>
+                                    <li>
+                                        <NavLink
+                                            to="/contact-us"
+                                            className={({ isActive, isPending }) =>
+                                                isPending ? "pending" : isActive ? "font-bold text-[#30a2a7]" : "font-normal"
+                                            }
+                                        >
+                                            Login
+                                        </NavLink>
+                                    </li>
+                                </>
+                        }
                     </ul>
                 </div>
             </div>
