@@ -46,6 +46,16 @@ const Navbar = () => {
                     Contact Us
                 </NavLink>
             </li>
+            <li>
+                <NavLink
+                    to="dashboard"
+                    className={({ isActive, isPending }) =>
+                        isPending ? "pending" : isActive ? "font-bold text-[#30a2a7]" : "font-normal"
+                    }
+                >
+                    Dashboard
+                </NavLink>
+            </li>
         </ul>
 
 
@@ -123,7 +133,7 @@ const Navbar = () => {
                                 <>
                                     <li>
                                         <NavLink
-                                            to="/contact-us"
+                                            to="/login"
                                             className={({ isActive, isPending }) =>
                                                 isPending ? "pending" : isActive ? "font-bold text-[#30a2a7]" : "font-normal"
                                             }

@@ -1,9 +1,12 @@
 import axios from "axios";
+import { useContext } from "react";
 // import useAxiosPublic from "../Hook/axiosPublic";
 import toast, { Toaster } from "react-hot-toast";
+import { AuthContext } from "../UsersRegisterAndLogin/AuthProvider";
 
 
 const CreateBlog = () => {
+    const { user } = useContext(AuthContext)
     // const axiosPublic = useAxiosPublic()
     const IMG_API_KEY = '95e0e6f1790d5b0a2184be49e4a99407' //please don't use this api
     const handleAddCoffee = async e => {
@@ -12,6 +15,7 @@ const CreateBlog = () => {
         const name = form.name.value;
         const Category = form.Category.value;
         const details = form.details.value;
+        const userEmail = user.email
         console.log(name, Category, details);
         const image = form.image.files[0];
         const formData = new FormData()
@@ -22,6 +26,7 @@ const CreateBlog = () => {
             name: name,
             Category: Category,
             details: details,
+            email: userEmail,
             data: data,
         }
         axios.post('http://localhost:5000/blogs', blogsData, {

@@ -6,6 +6,9 @@ import Home from './Home/Home';
 import SingIn from './UsersRegisterAndLogin/SingIn';
 import SingUp from './UsersRegisterAndLogin/Singup';
 import CreateBlog from './CreateBlog/CreateBlog';
+import Dashboard from './Dashboard/Dashboard';
+import UserProfile from './Dashboard/UserProfile';
+import MyPost from './Dashboard/MyPost';
 
 
 
@@ -32,6 +35,20 @@ const myCreatedRouter = createBrowserRouter([
                 path: 'singup',
                 element: <SingUp></SingUp>
             }
+        ]
+    },
+    {
+        path: '/dashboard',
+        element: <Dashboard></Dashboard>,
+        children: [
+            {
+                path: 'dashboard/profile',
+                element: <UserProfile></UserProfile>
+            },
+            {
+                path: 'dashboard/my-post',
+                element: <MyPost></MyPost>
+            },
         ]
     }
 ])

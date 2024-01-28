@@ -4,6 +4,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useContext, useState } from 'react';
 import { AuthContext } from './AuthProvider';
 import toast from 'react-hot-toast';
+import { auth } from './Console.firebase';
+import { GoogleAuthProvider } from 'firebase/auth';
 
 const SingUp = () => {
     const { createUser, singInWithGoogle } = useContext(AuthContext)
@@ -16,18 +18,29 @@ const SingUp = () => {
         const email = form.email.value;
         const password = form.password.value;
         // console.log(name, email, password);
-        createUser( email, password)
+        createUser(email, password)
             .then(result => {
                 console.log(result.user);
                 toast.success("Account created Successfully")
                 setHaveUser(true)
                 e.target.reset()
-                navigate('/login')
+                navigate('/')
 
             })
             .catch(error => {
                 console.log(error);
                 setHaveUser(false)
+            })
+    }
+    const handleLoginWithGoogle = () => {
+        singInWithGoogle(auth, GoogleAuthProvider)
+            .then(result => {
+                const user = result.user
+                console.log(user);
+                navigate('/')
+            })
+            .catch(error => {
+                console.log(error);
             })
     }
     return (
@@ -62,7 +75,7 @@ const SingUp = () => {
                     <h1 className="text-center font-bold">All ready have an account Please<Link className="text-blue-500" to={'/login'}> Login</Link></h1>
                     <hr className="bg-black" />
                     {/* <Toaster></Toaster> */}
-                    <button className=''>Google</button>
+                    <button onClick={handleLoginWithGoogle} className=''>Google</button>
                 </form >
             </div>
         </div>
