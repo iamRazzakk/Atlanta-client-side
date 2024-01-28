@@ -1,5 +1,7 @@
 import EditorChoice from "./EditorChoice";
 import Header from "./Header";
+import Membership from "./Membership";
+import Spotlight from "./Spotlight";
 
 
 const Home = () => {
@@ -7,6 +9,8 @@ const Home = () => {
         <div>
             <Header></Header>
             <EditorChoice></EditorChoice>
+            <Spotlight></Spotlight>
+            <Membership></Membership>
         </div>
     );
 };
