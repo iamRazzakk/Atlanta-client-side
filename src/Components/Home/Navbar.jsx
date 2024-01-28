@@ -18,6 +18,16 @@ const Navbar = () => {
             </li>
             <li>
                 <NavLink
+                    to="/blog-add"
+                    className={({ isActive, isPending }) =>
+                        isPending ? "pending" : isActive ? "font-bold text-[#ffe945]" : "font-normal"
+                    }
+                >
+                    Add Blog
+                </NavLink>
+            </li>
+            <li>
+                <NavLink
                     to="/about-us"
                     className={({ isActive, isPending }) =>
                         isPending ? "pending" : isActive ? "font-bold text-[#30a2a7]" : "font-normal"
