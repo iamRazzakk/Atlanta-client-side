@@ -11,6 +11,7 @@ import UserProfile from './Dashboard/UserProfile';
 import MyPost from './Dashboard/MyPost';
 import BlogDetail from './BlogDetail/BlogDetail';
 import PrivateRoute from './UsersRegisterAndLogin/PrivateRoute';
+import UpdateData from './Dashboard/UpdateData';
 
 
 
@@ -55,7 +56,12 @@ const myCreatedRouter = createBrowserRouter([
                 path: 'dashboard/my-post',
                 element: <PrivateRoute><MyPost></MyPost></PrivateRoute>
             },
+
         ]
+    },
+    {
+        path: '/blogs/:id',
+        element: <UpdateData></UpdateData>
     }
 ])
 

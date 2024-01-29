@@ -8,7 +8,7 @@ const EditorChoice = () => {
             </div>
             <div className="bg-[#FFC300] rounded-tr-2xl md:h-[890px]">
                 <div className="px-10 md:flex gap-6">
-                    <div className="flex-1 text-left">
+                    <div className="flex-1 text-left md:mt-10">
                         <img className="object-cover md:h-[434px] md:w-[579px]" src="https://myoan.fueko.net/content/images/size/w1200/format/webp/2023/11/photo-1683383635161-6b7412d1dc4a.jpeg" alt="" />
                         <div className="flex text-xl font-Lato">
                             <h3>September 9, 2023</h3>

@@ -56,7 +56,7 @@ const BlogDetail = () => {
             <form onSubmit={handleSubmitComment} className="md:mt-20">
                 <input type="text" name="name" placeholder="Enter your name" className="input md:mb-6 border border-black input-ghost w-full max-w-xs" /><br />
                 <textarea className="textarea border border-black textarea-bordered" cols="50" rows="10" name="comment" placeholder="Enter your comment"></textarea><br />
-                <button className="bg-[#3d90e9] text-white py-3 px-10 text-xl rounded-full button">Submit</button>
+                <button className="bg-[#f33151] px-6 py-4 rounded-full text-white font-bold hover:bg-[#e1404a]">Submit</button>
             </form>
             {/* <div>
                 <Comment></Comment>

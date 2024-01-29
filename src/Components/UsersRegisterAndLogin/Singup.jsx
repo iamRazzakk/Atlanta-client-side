@@ -6,10 +6,14 @@ import { AuthContext } from './AuthProvider';
 import toast from 'react-hot-toast';
 import { auth } from './Console.firebase';
 import { GoogleAuthProvider } from 'firebase/auth';
+import useAxiosPublic from '../Hook/axiosPublic';
+import UUID from 'uuid-int';
+
 
 const SingUp = () => {
     const { createUser, singInWithGoogle } = useContext(AuthContext)
     const navigate = useNavigate()
+    const axiosPublic = useAxiosPublic()
     const [haveUser, setHaveUser] = useState(false);
     const handleSubmit = e => {
         e.preventDefault()
@@ -19,30 +23,59 @@ const SingUp = () => {
         const password = form.password.value;
         // console.log(name, email, password);
         createUser(email, password)
-            .then(result => {
-                console.log(result.user);
-                toast.success("Account created Successfully")
-                setHaveUser(true)
-                e.target.reset()
-                navigate('/')
+            .then((result) => {
+                const user = result.user;
 
+                const id = 0;
+                const generator = UUID(id);
+                const userId = generator.uuid();
+
+                const userData = {
+                    userId: userId,
+                    displayName: name,
+                    email: user.email,
+                };
+
+                toast.success("Account created Successfully");
+                navigate('/');
+
+                axiosPublic.post('/user', userData)
+                    .then(() => {
+                        console.log(user);
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                    });
             })
-            .catch(error => {
+            .catch((error) => {
                 console.log(error);
-                setHaveUser(false)
-            })
-    }
+                setHaveUser(false);
+            });
+    };
+
     const handleLoginWithGoogle = () => {
         singInWithGoogle(auth, GoogleAuthProvider)
-            .then(result => {
-                const user = result.user
-                console.log(user);
-                navigate('/')
-            })
-            .catch(error => {
-                console.log(error);
-            })
-    }
+            .then((result) => {
+                const user = result.user;
+
+                const userData = {
+                    userId: user.uid,
+                    displayName: user.displayName,
+                    email: user.email,
+                };
+
+                toast.success("Signed in with Google Successfully");
+                navigate('/');
+
+                axiosPublic.post('/user', userData)
+                    .then(() => {
+                        console.log(user);
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                    });
+            });
+    };
     return (
         <div className="md:flex md:p-6">
             <div className="flex-1 flex-col-reverse md:p-4 md:mt-14">
@@ -75,7 +108,7 @@ const SingUp = () => {
                     <h1 className="text-center font-bold">All ready have an account Please<Link className="text-blue-500" to={'/login'}> Login</Link></h1>
                     <hr className="bg-black" />
                     {/* <Toaster></Toaster> */}
-                    <button onClick={handleLoginWithGoogle} className=''>Google</button>
+                    <button onClick={handleLoginWithGoogle} className='bg-[#f33151] px-6 py-4 rounded-full text-white font-bold hover:bg-[#e1404a]'>Google</button>
                 </form >
             </div>
         </div>

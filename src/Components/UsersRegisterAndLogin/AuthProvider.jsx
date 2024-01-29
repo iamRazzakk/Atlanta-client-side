@@ -28,9 +28,9 @@ const AuthProvider = ({ children }) => {
         setLoading(true)
         return signOut(auth)
     }
-    const updateProfileUser = (name, photoURL) => {
+    const updateProfileUser = (name, email) => {
         return updateProfile(auth.currentUser, {
-            displayName: name, photoURL: photoURL,
+            displayName: name, email: email,
         })
     }
 
@@ -44,11 +44,11 @@ const AuthProvider = ({ children }) => {
                 axiosPublic.post('/jwt', userInfo)
                     .then(res => {
                         if (res.data.token) {
-                            localStorage.setItem('access-token', res.data.token)
+                            localStorage.setItem(404, res.data.token)
                         }
                     })
             } else {
-                localStorage.removeItem('access-token')
+                localStorage.removeItem(404)
             }
             setLoading(false)
         })

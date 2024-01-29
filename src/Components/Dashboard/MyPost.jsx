@@ -50,9 +50,6 @@ const MyPost = () => {
             }
         });
     }
-    const handleUpdate = () => {
-        
-    }
     return (
         <div>
             {userFilter && userFilter.length > 0 && (
@@ -62,7 +59,6 @@ const MyPost = () => {
                             <th>Title</th>
                             <th>Edit</th>
                             <th>Delete</th>
-                            {/* Add more table headers as needed */}
                         </tr>
                     </thead>
                     <tbody>
@@ -70,8 +66,8 @@ const MyPost = () => {
                             <tr key={blog._id}>
                                 <td>{blog.name}</td>
                                 <td>
-                                    <Link to={'blogs'}>
-                                        <button onClick={() => handleUpdate(blog._id)}>
+                                    <Link to={`/blogs/${blog._id}`}>
+                                        <button>
                                             <FaRegEdit className="text-2xl"></FaRegEdit>
                                         </button>
                                     </Link>

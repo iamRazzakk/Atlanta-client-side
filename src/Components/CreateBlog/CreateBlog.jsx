@@ -9,7 +9,7 @@ const CreateBlog = () => {
     const { user } = useContext(AuthContext)
     // const axiosPublic = useAxiosPublic()
     const IMG_API_KEY = '95e0e6f1790d5b0a2184be49e4a99407' //please don't use this api
-    const handleAddCoffee = async e => {
+    const handleAddBlogs = async e => {
         e.preventDefault()
         const form = e.target;
         const name = form.name.value;
@@ -49,8 +49,7 @@ const CreateBlog = () => {
     return (
         <div className="bg-[#ffe945] p-24 font-Bricolage">
             <h1 className="text-3xl font-extrabold text-center">Add a Blog</h1>
-            <form onSubmit={handleAddCoffee}>
-                {/* form name and quantity name */}
+            <form onSubmit={handleAddBlogs}>
                 <div className="md:flex gap-4 mb-8">
                     <div className="form-control py-2 md:w-1/2">
                         <label className="label">
@@ -107,7 +106,6 @@ const CreateBlog = () => {
                 </button>
 
                 <Toaster></Toaster>
-                {/* <input type="submit" value="Add Car Detail" className="btn btn-block" /> */}
             </form>
         </div>
     );

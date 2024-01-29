@@ -1,9 +1,25 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from './../UsersRegisterAndLogin/AuthProvider';
+import { BsFillBookmarkHeartFill } from "react-icons/bs";
+
 
 const Navbar = () => {
     const { user, logOut } = useContext(AuthContext)
+    const [bookmarksLength, setBookmarksLength] = useState(0);
+
+    useEffect(() => {
+        const updateBookmarksLength = () => {
+            const length = Object.keys(localStorage).filter(key => isNaN(key)).length;
+            setBookmarksLength(length);
+        };
+        updateBookmarksLength();
+        return () => {
+
+        };
+    }, []);
+    // console.log("Number of bookmarks:", bookmarksLength);
+
     const navLink = <>
         <ul className=" md:flex gap-6 text-white">
             <li>
@@ -36,6 +52,9 @@ const Navbar = () => {
                     Dashboard
                 </NavLink>
             </li>
+            {user && <li>
+                <h1 className="text-black text-xl"><BsFillBookmarkHeartFill></BsFillBookmarkHeartFill>+{bookmarksLength}</h1>
+            </li>}
         </ul>
 
 
