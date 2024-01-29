@@ -38,19 +38,20 @@ const AuthProvider = ({ children }) => {
     useEffect(() => {
         const unSubscribe = onAuthStateChanged(auth, currentUser => {
             setUser(currentUser)
+            setLoading(false)
             console.log(currentUser);
             if (currentUser) {
                 const userInfo = { email: currentUser.email };
                 axiosPublic.post('/jwt', userInfo)
                     .then(res => {
                         if (res.data.token) {
-                            localStorage.setItem(404, res.data.token)
+                            localStorage.setItem(200, res.data.token)
                         }
                     })
             } else {
-                localStorage.removeItem(404)
+                localStorage.removeItem(200)
             }
-            setLoading(false)
+
         })
         return () => {
             unSubscribe()
@@ -63,7 +64,7 @@ const AuthProvider = ({ children }) => {
         logOut,
         singInWithGoogle,
         loading,
-        updateProfileUser
+        updateProfileUser,
     }
     return (
         <AuthContext.Provider value={authInfo}>

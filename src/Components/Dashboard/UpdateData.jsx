@@ -3,11 +3,11 @@ import { Toaster } from "react-hot-toast";
 import { useParams } from "react-router-dom";
 import useAxiosPublic from "../Hook/axiosPublic";
 import Navbar from "../Home/Navbar";
+import axios from "axios";
 
 
 const UpdateData = () => {
-    const { id } = useParams()
-    console.log(id);
+    const { id } = useParams();
     const axiosPublic = useAxiosPublic();
     const [formData, setFormData] = useState({
         name: "",
@@ -15,22 +15,25 @@ const UpdateData = () => {
         image: "",
         details: "",
     });
+    const [selectedImage, setSelectedImage] = useState(null);
+
+    const IMG_API_KEY = '95e0e6f1790d5b0a2184be49e4a99407'; // Please don't use this API key in production
 
     useEffect(() => {
         const fetchData = () => {
-            axiosPublic
-                .get(`/blogs/${id}`)
-                .then((response) => {
+            axiosPublic.get(`/blogs/${id}`)
+                .then(response => {
                     const blogData = response.data;
                     setFormData({
                         name: blogData.name,
                         Category: blogData.Category,
-                        image: "",
+                        image: blogData.image,
                         details: blogData.details,
                     });
                 })
-                .catch((error) => {
+                .catch(error => {
                     console.error(error);
+                    // Handle the error, e.g., redirect to a not found page
                 });
         };
 
@@ -39,16 +42,45 @@ const UpdateData = () => {
 
     const handleUpdateBlog = (e) => {
         e.preventDefault();
-        axiosPublic
-            .put(`/blogs/${id}`, formData)
-            .then((response) => {
-                console.log(response.data);
-                // Optionally, you can add a success message using toast or alert
-            })
-            .catch((error) => {
-                console.error(error);
-                // Handle error, show an error message using toast or alert
-            });
+        const updatedData = { ...formData };
+
+        let imageData = null;
+
+        // If a new image is selected, upload it to imgbb and get the URL
+        if (selectedImage) {
+            const formData = new FormData();
+            formData.append('image', selectedImage);
+
+            axios.post(`https://api.imgbb.com/1/upload?key=${IMG_API_KEY}`, formData)
+                .then(response => {
+                    imageData = response.data.url;
+                    updatedData.image = imageData;
+
+                    axiosPublic.put(`/blogs/${id}`, updatedData)
+                        .then(response => {
+                            console.log(response.data);
+                            // Optionally, you can add a success message using toast or alert
+                        })
+                        .catch(error => {
+                            console.error(error);
+                            
+                        });
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        } else {
+            
+            axiosPublic.put(`/blogs/${id}`, updatedData)
+                .then(response => {
+                    console.log(response.data);
+                    
+                })
+                .catch(error => {
+                    console.error(error);
+                    
+                });
+        }
     };
     return (
         <div>
@@ -85,10 +117,12 @@ const UpdateData = () => {
                             <label className="label">
                                 <span className="label-text font-bold">Photo URL</span>
                             </label>
-                            <label className="input-group text-center">
-                                {/* <span>Name</span> */}
-                                <input type="file" name="image" defaultValue={formData?.image} placeholder="Enter your imgbb direct Photo URL" className="input input-bordered w-full" />
-                            </label>
+                            <input
+                                type="file"
+                                name="image"
+                                onChange={(e) => setSelectedImage(e.target.files[0])}
+                                className="input input-bordered w-full"
+                            />
                         </div>
 
                     </div>

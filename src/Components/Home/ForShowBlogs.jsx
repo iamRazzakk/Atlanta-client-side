@@ -26,12 +26,12 @@ const ForShowBlogs = () => {
     return (
         <div className="md:mt-32">
             <div role="tablist" className="flex overflow-auto justify-end tabs tabs-lifted">
-                <a onClick={() => handleTabClick("innovation")} role="tab" className={`tab ${activeTab === 'innovation' ? 'active [--tab-bg:black] [--tab-border-color:black] text-black text-xl font-bold hover:underline' : ''}`}>#Innovation</a>
-                <a onClick={() => handleTabClick("design")} role="tab" className={`tab ${activeTab === 'design' ? 'active [--tab-bg:black] [--tab-border-color:black] text-black text-xl font-bold hover:underline' : ''}`}>#design</a>
-                <a onClick={() => handleTabClick("lifestyle")} role="tab" className={`tab ${activeTab === 'lifestyle' ? 'active [--tab-bg:black] [--tab-border-color:black] text-black text-xl font-bold hover:underline' : ''}`}>#lifestyle</a>
-                <a onClick={() => handleTabClick("creative")} role="tab" className={`tab ${activeTab === 'creative' ? 'active [--tab-bg:black] [--tab-border-color:black] text-black text-xl font-bold hover:underline' : ''}`}>#creative</a>
-                <a onClick={() => handleTabClick("technology")} role="tab" className={`tab ${activeTab === 'technology' ? 'active [--tab-bg:black] [--tab-border-color:black] text-black text-xl font-bold hover:underline' : ''}`}>#technology</a>
-                <a onClick={() => handleTabClick("inspiration")} role="tab" className={`tab ${activeTab === 'inspiration' ? 'active [--tab-bg:black] [--tab-border-color:black] text-black text-xl font-bold hover:underline' : ''}`}>#inspiration</a>
+                <a onClick={() => handleTabClick("innovation")} role="tab" className={`tab ${activeTab === 'innovation' ? 'active [--tab-bg:black] [--tab-border-color:black] text-black text-xl font-bold hover:underline' : ''}`}>Innovation</a>
+                <a onClick={() => handleTabClick("design")} role="tab" className={`tab ${activeTab === 'design' ? 'active [--tab-bg:black] [--tab-border-color:black] text-black text-xl font-bold hover:underline' : ''}`}>design</a>
+                <a onClick={() => handleTabClick("lifestyle")} role="tab" className={`tab ${activeTab === 'lifestyle' ? 'active [--tab-bg:black] [--tab-border-color:black] text-black text-xl font-bold hover:underline' : ''}`}>lifestyle</a>
+                <a onClick={() => handleTabClick("creative")} role="tab" className={`tab ${activeTab === 'creative' ? 'active [--tab-bg:black] [--tab-border-color:black] text-black text-xl font-bold hover:underline' : ''}`}>creative</a>
+                <a onClick={() => handleTabClick("technology")} role="tab" className={`tab ${activeTab === 'technology' ? 'active [--tab-bg:black] [--tab-border-color:black] text-black text-xl font-bold hover:underline' : ''}`}>technology</a>
+                <a onClick={() => handleTabClick("inspiration")} role="tab" className={`tab ${activeTab === 'inspiration' ? 'active [--tab-bg:black] [--tab-border-color:black] text-black text-xl font-bold hover:underline' : ''}`}>inspiration</a>
             </div>
 
 

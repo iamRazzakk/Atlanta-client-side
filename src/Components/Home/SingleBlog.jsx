@@ -29,7 +29,7 @@ const SingleBlog = ({ blog }) => {
     }
     return (
         <div>
-            {blog && blog.Category && blog.name && blog.details && blog.data?.data?.display_url ? (
+            {blog && blog.Category && blog.name && blog.details && blog.data?.data?.display_url && (
                 <div className="md:flex gap-4 mb-4 border-b p-4 border-gray-400">
                     <div className="flex-1 ">
                         <div className="flex justify-between ">
@@ -51,8 +51,6 @@ const SingleBlog = ({ blog }) => {
                         <img className="h-[131px] flex justify-center items-center w-[211px]" src={blog.data.data.display_url} alt="" />
                     </div>
                 </div>
-            ) : (
-                <h1 className="text-4xl text-center font-Bricolage text-black">No Blog found</h1>
             )}
         </div>
     );
