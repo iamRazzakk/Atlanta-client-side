@@ -70,7 +70,7 @@ const SingUp = () => {
                         <input type="password" name="password" placeholder="Enter your password" className="input input-bordered bg-white text-black" required />
                     </div>
                     <div className="form-control mt-6">
-                        <button className="bg-[#3d90e9] text-black py-3 text-xl rounded-full button">Login</button>
+                        <button className=" bg-[#f33151] px-6 py-4 rounded-full text-white font-bold hover:bg-[#e1404a]">Sing up</button>
                     </div>
                     <h1 className="text-center font-bold">All ready have an account Please<Link className="text-blue-500" to={'/login'}> Login</Link></h1>
                     <hr className="bg-black" />
