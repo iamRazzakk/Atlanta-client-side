@@ -14,7 +14,7 @@ const Comment = () => {
 
     const { isPending, data: fetchedComments, refetch } = useQuery({
         queryKey: ['comments'],
-        queryFn: () => fetch('http://localhost:5000/comments').then((res) => res.json()),
+        queryFn: () => fetch('https://atlanta-ten.vercel.app/comments').then((res) => res.json()),
     });
 
     let commentFilter = [];
@@ -43,7 +43,7 @@ const Comment = () => {
         };
 
         try {
-            const response = await axios.post('http://localhost:5000/comments', commentData);
+            const response = await axios.post('https://atlanta-ten.vercel.app/comments', commentData);
 
             if (response.data.acknowledged) {
                 Swal.fire({

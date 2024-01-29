@@ -15,7 +15,7 @@ const MyPost = () => {
     const { data: Blogs, refetch } = useQuery({
         queryKey: 'blogs',
         queryFn: () => {
-            return fetch("http://localhost:5000/blogs")
+            return fetch("https://atlanta-ten.vercel.app/blogs")
                 .then((res) => res.json());
         },
     });

@@ -14,12 +14,12 @@ const BlogDetail = () => {
     
 
     useEffect(() => {
-        fetch(`http://localhost:5000/blogs/${id}`)
+        fetch(`https://atlanta-ten.vercel.app/blogs/${id}`)
             .then(response => response.json())
             .then(data => setBlog(data))
             .catch(error => console.error('Error:', error));
 
-        // fetch('http://localhost:5000/comments')
+        // fetch('https://atlanta-ten.vercel.app/comments')
         //     .then(response => response.json())
         //     .then(data => setComments(data))
         //     .catch(error => console.error('Error:', error));

@@ -20,7 +20,7 @@ const CreateBlog = () => {
         const image = form.image.files[0];
         const formData = new FormData()
         formData.append('image', image)
-        const { data } = await axios.post(`https://api.imgbb.com/1/upload?key=${IMG_API_KEY}`, formData);
+        const { data } = await axios.post(`https://api.imgbb.com/1/upload?key=${IMG_API_KEY}`, formData )
         // console.log(data);
         const blogsData = {
             name: name,
@@ -29,11 +29,7 @@ const CreateBlog = () => {
             email: userEmail,
             data: data,
         }
-        axios.post('http://localhost:5000/blogs', blogsData, {
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        })
+        axios.post('https://atlanta-ten.vercel.app/blogs', blogsData, {mode:'no-cors'})
             .then(response => {
                 if (response.data.acknowledged) {
                     toast.success('Blog added successfully');
