@@ -1,10 +1,13 @@
 import axios from "axios";
 import toast from "react-hot-toast";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-// import Comment from "./Comment";
+
+import Comment from "./Comment";
+import { AuthContext } from "../UsersRegisterAndLogin/AuthProvider";
 
 const BlogDetail = () => {
+    const { user } = useContext(AuthContext)
     const { id } = useParams();
     const [blog, setBlog] = useState(null);
 
@@ -22,10 +25,13 @@ const BlogDetail = () => {
         const name = form.name.value;
         const comment = form.comment.value;
         const userId = parseInt(id);
+        const blogId = blog._id;
         const commentData = {
             name: name,
+            email: user?.email,
             comment: comment,
-            userId: userId
+            userId: userId,
+            blogId: blogId,
         }
 
         axios.post('http://localhost:5000/comments', commentData, {
@@ -58,9 +64,10 @@ const BlogDetail = () => {
                 <textarea className="textarea border border-black textarea-bordered" cols="50" rows="10" name="comment" placeholder="Enter your comment"></textarea><br />
                 <button className="bg-[#f33151] px-6 py-4 rounded-full text-white font-bold hover:bg-[#e1404a]">Submit</button>
             </form>
-            {/* <div>
+            <div>
+                <h1>Comment:</h1>
                 <Comment></Comment>
-            </div> */}
+            </div>
         </div>
     );
 };
